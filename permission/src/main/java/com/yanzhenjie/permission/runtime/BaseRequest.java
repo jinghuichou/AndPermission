@@ -17,8 +17,7 @@ package com.yanzhenjie.permission.runtime;
 
 import android.content.Context;
 import android.os.Build;
-
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.Rationale;

@@ -16,9 +16,8 @@
 package com.yanzhenjie.permission.task;
 
 import android.content.Context;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatDialog;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatDialog;
 
 import com.yanzhenjie.permission.R;
 

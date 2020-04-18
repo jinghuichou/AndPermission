@@ -17,9 +17,8 @@ package com.yanzhenjie.permission.sample.util;
 
 import android.content.Context;
 import android.os.Environment;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
-
-import androidx.annotation.Nullable;
 
 import java.io.File;
 

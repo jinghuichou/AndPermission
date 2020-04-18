@@ -17,4 +17,5 @@ dependencies {
     implementation project(':permission')
 
     implementation rootProject.ext.dependencies.fragment
+    api rootProject.ext.dependencies.appcompat
 }

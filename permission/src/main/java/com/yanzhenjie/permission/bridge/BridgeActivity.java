@@ -15,15 +15,15 @@
  */
 package com.yanzhenjie.permission.bridge;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.yanzhenjie.permission.overlay.setting.LSettingPage;
 import com.yanzhenjie.permission.overlay.setting.MSettingPage;
@@ -36,7 +36,7 @@ import com.yanzhenjie.permission.source.Source;
  * </p>
  * Created by Zhenjie Yan on 2017/4/27.
  */
-public final class BridgeActivity extends Activity {
+public final class BridgeActivity extends AppCompatActivity {
 
     private static final String KEY_TYPE = "KEY_TYPE";
     private static final String KEY_PERMISSIONS = "KEY_PERMISSIONS";
@@ -142,7 +142,9 @@ public final class BridgeActivity extends Activity {
             }
             case BridgeRequest.TYPE_PERMISSION: {
                 String[] permissions = intent.getStringArrayExtra(KEY_PERMISSIONS);
-                requestPermissions(permissions, BridgeRequest.TYPE_PERMISSION);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions(permissions, BridgeRequest.TYPE_PERMISSION);
+                }
                 break;
             }
             case BridgeRequest.TYPE_INSTALL: {

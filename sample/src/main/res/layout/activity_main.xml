@@ -19,7 +19,7 @@
     style="@style/Permission.MatchParent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
+    <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         style="@style/Permission.Toolbar"
         android:background="?attr/colorPrimary" />

@@ -18,8 +18,7 @@ package com.yanzhenjie.permission.sample.app;
 import android.os.Build;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
-
-import androidx.annotation.RequiresApi;
+import android.support.annotation.RequiresApi;
 
 /**
  * Created by Zhenjie Yan on 2/14/19.

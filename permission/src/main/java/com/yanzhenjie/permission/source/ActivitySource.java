@@ -15,10 +15,10 @@
  */
 package com.yanzhenjie.permission.source;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * <p>Context Wrapper.</p>
@@ -26,9 +26,9 @@ import android.os.Build;
  */
 public class ActivitySource extends Source {
 
-    private Activity mActivity;
+    private AppCompatActivity mActivity;
 
-    public ActivitySource(Activity activity) {
+    public ActivitySource(AppCompatActivity activity) {
         this.mActivity = activity;
     }
 

@@ -15,10 +15,10 @@
  */
 package com.yanzhenjie.permission.source;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.v4.app.Fragment;
 
 /**
  * <p>android.app.Fragment Wrapper.</p>
