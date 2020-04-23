@@ -1,4 +1,4 @@
-apply plugin: rootProject.ext.plugins.library
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -10,6 +10,12 @@ android {
     }
 
     resourcePrefix 'permission'
+}
+
+// 打包源码jar
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
 }
 
 dependencies {
