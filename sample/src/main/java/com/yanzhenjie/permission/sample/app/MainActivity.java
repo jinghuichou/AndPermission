@@ -47,7 +47,7 @@ import com.yanzhenjie.permission.sample.RuntimeRationale;
 import com.yanzhenjie.permission.sample.WriteSettingRationale;
 import com.yanzhenjie.permission.sample.util.FileUtils;
 import com.yanzhenjie.permission.sample.util.IOUtils;
-import com.yanzhenjie.permission.task.TaskNoDialogExecutor;
+import com.yanzhenjie.permission.task.TaskExecutor;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -511,7 +511,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void writeApkForInstallPackage() {
-        new TaskNoDialogExecutor<File>(MainActivity.this) {
+        new TaskExecutor<File>(MainActivity.this) {
             @Override
             protected File doInBackground(Void... voids) {
                 try {
