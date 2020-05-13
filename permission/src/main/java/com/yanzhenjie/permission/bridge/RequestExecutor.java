@@ -37,23 +37,14 @@ final class RequestExecutor extends Thread implements Messenger.Callback {
 
     private BridgeRequest mRequest;
     private Messenger mMessenger;
-    private WaitDialog waitDialog;
-    private Handler handler = new Handler(Looper.getMainLooper());
 
 
     public RequestExecutor(BridgeRequest request) {
         this.mRequest = request;
-        waitDialog = new WaitDialog(mRequest.getSource().getContext());
     }
 
     @Override
     public void run() {
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                waitDialog.show();
-            }
-        });
         Context context = mRequest.getSource().getContext();
 
         mMessenger = new Messenger(context, this);
@@ -78,12 +69,6 @@ final class RequestExecutor extends Thread implements Messenger.Callback {
 
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    waitDialog.dismiss();
-                }
-            });
         }
     };
 
@@ -135,12 +120,6 @@ final class RequestExecutor extends Thread implements Messenger.Callback {
             mRequest.getSource().getContext().unbindService(mConnection);
             mMessenger = null;
             mRequest = null;
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    waitDialog.dismiss();
-                }
-            });
         }
     }
 }

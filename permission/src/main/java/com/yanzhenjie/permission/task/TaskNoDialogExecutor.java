@@ -27,21 +27,17 @@ import java.util.concurrent.Executors;
 public abstract class TaskNoDialogExecutor<T> extends AsyncTask<Void, Void, T> {
 
     private static Executor sExecutor = Executors.newSingleThreadExecutor();
-    private WaitDialog waitDialog;
 
     public TaskNoDialogExecutor(Context context) {
-        waitDialog = new WaitDialog(context);
     }
 
     @Override
     protected final void onPreExecute() {
-        waitDialog.show();
     }
 
     @Override
     protected final void onPostExecute(T t) {
         onFinish(t);
-        waitDialog.dismiss();
     }
 
     protected abstract void onFinish(T t);
