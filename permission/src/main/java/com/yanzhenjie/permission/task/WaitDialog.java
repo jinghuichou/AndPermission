@@ -18,6 +18,7 @@ package com.yanzhenjie.permission.task;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatDialog;
+import android.view.WindowManager;
 
 import com.yanzhenjie.permission.R;
 
@@ -28,6 +29,8 @@ public class WaitDialog extends AppCompatDialog {
 
     public WaitDialog(@NonNull Context context) {
         super(context, R.style.Permission_Theme_Dialog_Wait);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         setContentView(R.layout.permission_dialog_wait);
     }
 }

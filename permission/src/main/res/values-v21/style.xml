@@ -33,6 +33,15 @@
         <item name="android:indeterminateTint">@android:color/white</item>
     </style>
 
+    <style name="Permission.Theme.Dialog.Wait">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarDividerColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@drawable/permission_shape_wait_background</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
     <style name="Permission.Theme.Activity" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
