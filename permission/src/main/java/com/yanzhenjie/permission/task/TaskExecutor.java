@@ -32,7 +32,7 @@ public abstract class TaskExecutor<T> extends AsyncTask<Void, Void, T> {
     private Dialog mDialog;
 
     public TaskExecutor(Context context) {
-        this.mDialog = new WaitDialog(context);
+        this.mDialog = new WaitDialog(context.getApplicationContext());
         this.mDialog.setCancelable(false);
     }
 
@@ -46,7 +46,11 @@ public abstract class TaskExecutor<T> extends AsyncTask<Void, Void, T> {
     @Override
     protected final void onPostExecute(T t) {
         if (mDialog.isShowing()) {
-            mDialog.dismiss();
+            try {
+                mDialog.dismiss();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         onFinish(t);
     }
