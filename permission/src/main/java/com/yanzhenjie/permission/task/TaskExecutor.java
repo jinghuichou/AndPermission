@@ -32,7 +32,7 @@ public abstract class TaskExecutor<T> extends AsyncTask<Void, Void, T> {
     private Dialog mDialog;
 
     public TaskExecutor(Context context) {
-        this.mDialog = new WaitDialog(context.getApplicationContext());
+        this.mDialog = new WaitDialog(context);
         this.mDialog.setCancelable(false);
     }
 
