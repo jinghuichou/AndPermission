@@ -42,6 +42,7 @@ public final class StandardChecker implements PermissionChecker {
 
     @Override
     public boolean hasPermission(Context context, List<String> permissions) {
+        if (context.getApplicationInfo().targetSdkVersion < Build.VERSION_CODES.M) return true;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return true;
 
         AppOpsManager opsManager = null;

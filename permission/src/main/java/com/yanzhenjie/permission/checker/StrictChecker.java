@@ -33,6 +33,7 @@ public final class StrictChecker implements PermissionChecker {
 
     @Override
     public boolean hasPermission(Context context, String... permissions) {
+        if (context.getApplicationInfo().targetSdkVersion < Build.VERSION_CODES.M) return true;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return true;
 
         for (String permission : permissions) {

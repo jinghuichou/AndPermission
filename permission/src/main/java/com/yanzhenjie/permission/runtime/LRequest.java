@@ -70,7 +70,7 @@ class LRequest extends BaseRequest {
 
             @Override
             protected void onFinish(List<String> deniedList) {
-                if (deniedList.isEmpty()) {
+                if (deniedList == null || deniedList.isEmpty()) {
                     callbackSucceed(mPermissions);
                 } else {
                     callbackFailed(deniedList);
