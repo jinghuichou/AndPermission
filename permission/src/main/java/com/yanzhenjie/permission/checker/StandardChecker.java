@@ -42,25 +42,32 @@ public final class StandardChecker implements PermissionChecker {
 
     @Override
     public boolean hasPermission(Context context, List<String> permissions) {
+        if (context.getApplicationInfo().targetSdkVersion < Build.VERSION_CODES.M) return true;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return true;
 
         AppOpsManager opsManager = null;
-        for (String permission : permissions) {
-            int result = context.checkPermission(permission, android.os.Process.myPid(), android.os.Process.myUid());
-            if (result == PackageManager.PERMISSION_DENIED) {
-                return false;
-            }
+        try {
+            for (String permission : permissions) {
+                int result = context.checkPermission(permission, android.os.Process.myPid(), android.os.Process.myUid());
+                if (result == PackageManager.PERMISSION_DENIED) {
+                    return false;
+                }
 
-            String op = AppOpsManager.permissionToOp(permission);
-            if (TextUtils.isEmpty(op)) {
-                continue;
-            }
+                String op = AppOpsManager.permissionToOp(permission);
+                if (TextUtils.isEmpty(op)) {
+                    continue;
+                }
 
-            if (opsManager == null) opsManager = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
-            result = opsManager.checkOpNoThrow(op, android.os.Process.myUid(), context.getPackageName());
-            if (result != AppOpsManager.MODE_ALLOWED && result != MODE_ASK && result != MODE_COMPAT) {
-                return false;
+                if (opsManager == null)
+                    opsManager = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+                result = opsManager.checkOpNoThrow(op, android.os.Process.myUid(), context.getPackageName());
+                if (result != AppOpsManager.MODE_ALLOWED && result != MODE_ASK && result != MODE_COMPAT) {
+                    return false;
+                }
             }
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return false;
         }
         return true;
     }

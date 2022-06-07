@@ -20,7 +20,7 @@ import android.support.annotation.NonNull;
 import com.yanzhenjie.permission.checker.PermissionChecker;
 import com.yanzhenjie.permission.checker.StrictChecker;
 import com.yanzhenjie.permission.source.Source;
-import com.yanzhenjie.permission.task.TaskNoDialogExecutor;
+import com.yanzhenjie.permission.task.TaskExecutor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,7 +62,7 @@ class LRequest extends BaseRequest {
     public void start() {
         mPermissions = filterPermissions(mPermissions);
 
-        new TaskNoDialogExecutor<List<String>>(mSource.getContext()) {
+        new TaskExecutor<List<String>>(mSource.getContext()) {
             @Override
             protected List<String> doInBackground(Void... voids) {
                 return getDeniedPermissions(STRICT_CHECKER, mSource, mPermissions);
@@ -70,7 +70,7 @@ class LRequest extends BaseRequest {
 
             @Override
             protected void onFinish(List<String> deniedList) {
-                if (deniedList.isEmpty()) {
+                if (deniedList == null || deniedList.isEmpty()) {
                     callbackSucceed(mPermissions);
                 } else {
                     callbackFailed(deniedList);

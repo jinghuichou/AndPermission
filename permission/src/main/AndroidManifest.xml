@@ -29,8 +29,7 @@
         <service
             android:name=".bridge.BridgeService"
             android:exported="false"
-            android:permission="${applicationId}.andpermission.bridge"
-            android:process=":permission">
+            android:permission="${applicationId}.andpermission.bridge">
             <intent-filter>
                 <action android:name="${applicationId}.andpermission.bridge" />
             </intent-filter>
@@ -41,7 +40,6 @@
             android:configChanges="orientation"
             android:exported="false"
             android:permission="${applicationId}.andpermission.bridge"
-            android:process=":permission"
             android:theme="@style/Permission.Theme.Activity" />
 
         <provider

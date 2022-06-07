@@ -24,7 +24,7 @@ import com.yanzhenjie.permission.checker.DoubleChecker;
 import com.yanzhenjie.permission.checker.PermissionChecker;
 import com.yanzhenjie.permission.checker.StandardChecker;
 import com.yanzhenjie.permission.source.Source;
-import com.yanzhenjie.permission.task.TaskNoDialogExecutor;
+import com.yanzhenjie.permission.task.TaskExecutor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -98,7 +98,7 @@ class MRequest extends BaseRequest implements RequestExecutor, BridgeRequest.Cal
 
     @Override
     public void onCallback() {
-        new TaskNoDialogExecutor<List<String>>(mSource.getContext()) {
+        new TaskExecutor<List<String>>(mSource.getContext()) {
             @Override
             protected List<String> doInBackground(Void... voids) {
                 return getDeniedPermissions(DOUBLE_CHECKER, mSource, mPermissions);
@@ -106,7 +106,7 @@ class MRequest extends BaseRequest implements RequestExecutor, BridgeRequest.Cal
 
             @Override
             protected void onFinish(List<String> deniedList) {
-                if (deniedList.isEmpty()) {
+                if (deniedList == null || deniedList.isEmpty()) {
                     callbackSucceed(mPermissions);
                 } else {
                     callbackFailed(deniedList);

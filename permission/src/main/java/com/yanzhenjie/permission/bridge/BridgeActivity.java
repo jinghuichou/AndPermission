@@ -24,6 +24,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.WindowManager;
 
 import com.yanzhenjie.permission.overlay.setting.LSettingPage;
 import com.yanzhenjie.permission.overlay.setting.MSettingPage;
@@ -127,6 +128,9 @@ public final class BridgeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) return;
 
@@ -193,6 +197,7 @@ public final class BridgeActivity extends AppCompatActivity {
 
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {
+        overridePendingTransition(0, 0);
         super.startActivityForResult(intent, requestCode);
     }
 
@@ -209,5 +214,11 @@ public final class BridgeActivity extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0, 0);
     }
 }

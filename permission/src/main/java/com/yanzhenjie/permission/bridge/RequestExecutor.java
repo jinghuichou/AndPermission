@@ -35,6 +35,7 @@ final class RequestExecutor extends Thread implements Messenger.Callback {
     private BridgeRequest mRequest;
     private Messenger mMessenger;
 
+
     public RequestExecutor(BridgeRequest request) {
         this.mRequest = request;
     }
