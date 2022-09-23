@@ -84,7 +84,7 @@ public class FileProvider extends ContentProvider {
             throw new SecurityException("Provider must grant uri permissions");
         }
 
-        mStrategy = getPathStrategy(context, info.authority);
+//        mStrategy = getPathStrategy(context, info.authority);
     }
 
     public static Uri getUriForFile(Context context, String authority, File file) {
